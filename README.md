@@ -49,3 +49,148 @@ Initially, we focussed on I2C master design. First, i2c master FSM was written, 
 2. **Implementation of SPI master and slave:**
 
 We haven't used any state machine in our SPI design. SPI master and slave generates its own clock based on the mode of operation choosen. We can specify mode of operation in testbench. We first started with master design. Then, we focussed on slave design. In fact, it's easier to design slave once we are done with master design. Here, we came across clock domain crossing concept. In order to capture data at active edge of spi clk, we expanded the signal using temperorary registers. Finally, we integrated both of these modules to test its working. 
+---
+
+# Implementation of I²C and SPI Protocols Using Verilog
+
+## Overview
+
+This project implements the **I²C (Inter-Integrated Circuit)** and **SPI (Serial Peripheral Interface)** communication protocols using **Verilog HDL**. The design includes both **Master and Slave modules** along with **testbenches** to verify correct protocol behavior through simulation.
+
+The implementation follows standard protocol timing and signaling, making it suitable for **FPGA, ASIC, and SoC-based designs**.
+
+---
+
+## Objectives
+
+* Design synthesizable RTL modules for I²C and SPI
+* Implement master–slave communication
+* Verify protocol functionality using Verilog testbenches
+* Provide reusable and modular IP blocks
+
+---
+
+## Protocols Implemented
+
+### I²C Protocol
+
+* Two-wire interface (SDA, SCL)
+* Start and Stop condition generation
+* 7-bit addressing
+* ACK/NACK handling
+* Master–Slave communication
+
+### SPI Protocol
+
+* Full-duplex serial communication
+* Master-driven clock
+* MOSI and MISO data transfer
+* Slave select handling
+* Synchronous data transmission
+
+---
+
+## Repository Structure
+
+```text
+IMPLEMENTATION-OF-I2C-AND-SPI-PROTOCOLS/
+│
+├── i2c_slave.v        # I²C slave RTL implementation
+├── master_i2c.v       # I²C master RTL implementation
+│
+├── SPI_M.v            # SPI master RTL implementation
+├── SPI_SLAVE.v        # SPI slave RTL implementation
+│
+├── tb_i2c.v           # Testbench for I²C protocol
+├── Test_bench.v       # Testbench for SPI protocol
+│
+├── README.md          # Project documentation
+```
+
+---
+
+## File Description
+
+### I²C Modules
+
+* **`master_i2c.v`**
+  Implements I²C master functionality including start/stop conditions, address transmission, and data transfer.
+
+* **`i2c_slave.v`**
+  Implements I²C slave behavior with address detection, ACK/NACK handling, and data reception/transmission.
+
+### SPI Modules
+
+* **`SPI_M.v`**
+  SPI master module supporting synchronous full-duplex communication.
+
+* **`SPI_SLAVE.v`**
+  SPI slave module that communicates based on master-generated clock and chip select.
+
+### Testbenches
+
+* **`tb_i2c.v`**
+  Verifies I²C master–slave communication and timing behavior.
+
+* **`Test_bench.v`**
+  Tests SPI master–slave data transmission and protocol correctness.
+
+---
+
+## Tools & Technologies
+
+* **Language:** Verilog HDL
+* **Simulation:** Icarus Verilog / ModelSim
+* **Waveform Viewer:** GTKWave
+* **Target Platforms:** FPGA / ASIC
+
+---
+
+## Simulation Instructions
+
+### I²C Simulation
+
+```bash
+iverilog -o i2c_tb master_i2c.v i2c_slave.v tb_i2c.v
+vvp i2c_tb
+gtkwave dump.vcd
+```
+
+### SPI Simulation
+
+```bash
+iverilog -o spi_tb SPI_M.v SPI_SLAVE.v Test_bench.v
+vvp spi_tb
+gtkwave dump.vcd
+```
+
+---
+
+## Applications
+
+* SoC peripheral communication
+* Embedded systems
+* Sensor and memory interfacing
+* FPGA and VLSI academic projects
+* RTL design interview demonstrations
+
+---
+
+## Key Highlights
+
+* Modular and reusable RTL design
+* Synthesizable Verilog code
+* Protocol-accurate timing
+* Easy integration into larger SoC designs
+
+---
+
+## Author
+
+**Bibin N B**
+VLSI / RTL Design Engineer
+(ASIC | FPGA | SoC | Protocol Design)
+
+---
+
+
