@@ -105,6 +105,8 @@ IMPLEMENTATION-OF-I2C-AND-SPI-PROTOCOLS/
 ├── Test_bench.v       # Testbench for SPI protocol
 │
 ├── README.md          # Project documentation
+├── LICENSE            # MIT License
+
 ```
 
 ---
